@@ -7,7 +7,7 @@
 clear custom_choice
 menu custom_choice
 item --gap Proxmox 6
-item option_one ${space} Proxmox 6 Install
+item option_one ${space} Proxmox 6 ISCSI
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
@@ -18,8 +18,7 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_one
-kernel http://192.168.111.245:8080/proxmox-6/linux26
-append root=/dev/nfs boot=casper netboot=nfs nfsroot=10.9.9.10:/export/tftpboot/linux/mint12 quiet splash --
+kernel http://192.168.111.245:8080/proxmox-6/linux26 ISCSI_INITIATOR=iqn.2000-01.com.synology:xoho.disk0 iSCSI_TARGET_IP=192.168.111.245 ISCSI_TARGET_PORT=3260 root=UUID=0f90bc57-821f-4bf8-b473-23fd02e7209a quiet splash
 initrd http://192.168.111.245:8080/proxmox-6/initrd.iso.img splash=verbose
 boot || goto custom_exit
 
