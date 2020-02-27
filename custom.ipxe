@@ -5,8 +5,8 @@
 
 :custom
 clear custom_choice
-menu This is a Test Menu
-item --gap This is the first sub menu
+menu Proxmox
+item --gap Proxmox 6
 item option_one ${space} Loading a kernel and initrd
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
@@ -18,11 +18,8 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_one
-kernel http://path.to/vmlinuz
-initrd http://path.to/initrd
-imgargs vmlinuz put_kernel_img_args_here
-
-
+kernel http://192.168.111.245:8080/proxmox-6/linux26 initrd=initrd.img
+initrd INITRD http://192.168.111.245:8080/proxmox-6/initrd.iso.img splash=verbose
 boot || goto custom_exit
 
 :option_two
