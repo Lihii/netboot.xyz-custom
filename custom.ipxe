@@ -5,7 +5,7 @@
 
 :custom
 clear custom_choice
-menu Proxmox
+menu custom_choice
 item --gap Proxmox 6
 item option_one ${space} Proxmox 6
 item option_two ${space} Loading an ISO
