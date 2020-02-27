@@ -19,7 +19,7 @@ goto custom_exit
 
 :option_one
 set base-url http://releases.rancher.com/os/latest
-kernel ${base-url}/vmlinuz rancher.state.dev=LABEL=RANCHER_STATE rancher.state.autoformat=[/dev/sda] rancher.cloud_init.datasources=[url:http://www1.xoho.team/cff.yml
+kernel ${base-url}/vmlinuz rancher.state.dev=LABEL=RANCHER_STATE rancher.cloud_init.datasources=[url:http://www1.xoho.team/cff.yml
 initrd ${base-url}/initrd
 boot || goto custom_exit
 
