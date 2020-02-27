@@ -19,7 +19,7 @@ goto custom_exit
 
 :option_one
 kernel http://192.168.111.245:8080/proxmox-6/linux26 ISCSI_INITIATOR=iqn.2000-01.com.synology:xoho.disk0 iSCSI_TARGET_IP=192.168.111.245 ISCSI_TARGET_PORT=3260 root=UUID=0f90bc57-821f-4bf8-b473-23fd02e7209a quiet splash
-initrd http://192.168.111.245:8080/proxmox-6/initrd.iso.img splash=verbose
+initrd http://192.168.111.245:8080/proxmox-6/initrd.iso.img  ISCSI_INITIATOR=iqn.2000-01.com.synology:xoho.disk0 iSCSI_TARGET_IP=192.168.111.245 ISCSI_TARGET_PORT=3260 root=UUID=0f90bc57-821f-4bf8-b473-23fd02e7209a splash=verbose
 boot || goto custom_exit
 
 :option_two
