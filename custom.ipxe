@@ -19,6 +19,7 @@ goto custom_exit
 
 :option_one
 kernel http://192.168.111.245:8080/proxmox-6/linux26
+append root=/dev/nfs boot=casper netboot=nfs nfsroot=10.9.9.10:/export/tftpboot/linux/mint12 quiet splash --
 initrd http://192.168.111.245:8080/proxmox-6/initrd.iso.img splash=verbose
 boot || goto custom_exit
 
