@@ -7,7 +7,7 @@
 clear custom_choice
 menu custom_choice
 item --gap Proxmox 6
-item option_one ${space} Proxmox 6
+item option_one ${space} Proxmox 6 Install
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
@@ -23,9 +23,8 @@ initrd http://192.168.111.245:8080/proxmox-6/initrd.iso.img splash=verbose
 boot || goto custom_exit
 
 :option_two
-LINUX http://192.168.111.245:8080/proxmox-6/linux26
-APPEND vga=791 video=vesafb:ywrap,mtrr ramdisk_size=16777216 
-INITRD http://192.168.111.245:8080/proxmox-6/initrd.iso.img splash=verbose
+kernel http://192.168.111.245:8080/proxmox-6/linux26
+initrd http://192.168.111.245:8080/proxmox-6/initrd.iso.img splash=verbose
 boot || goto custom_exit
 
 :option_three
