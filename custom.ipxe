@@ -7,7 +7,7 @@
 clear custom_choice
 menu Proxmox
 item --gap Proxmox 6
-item option_one ${space} Loading a kernel and initrd
+item option_one ${space} Proxmox 6
 item option_two ${space} Loading an ISO
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
