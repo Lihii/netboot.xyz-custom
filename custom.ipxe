@@ -18,8 +18,10 @@ goto ${custom_choice}
 goto custom_exit
 
 :option_one
+# Location of Kernel/Initrd images
 set base-url http://releases.rancher.com/os/latest
-kernel ${base-url}/vmlinuz rancher.state.dev=LABEL=RANCHER_STATE rancher.cloud_init.datasources=[url:http://www1.xoho.team/cff.yml
+
+kernel ${base-url}/vmlinuz rancher.state.dev=LABEL=RANCHER_STATE rancher.state.autoformat=[/dev/sda] rancher.cloud_init.datasources=[url:http://192.168.90.103:8080/cloud-config]
 initrd ${base-url}/initrd
 boot || goto custom_exit
 
