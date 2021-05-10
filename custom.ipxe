@@ -7,7 +7,7 @@
 clear custom_choice
 menu custom_choice
 item --gap Proxmox 6
-item option_one ${space} Proxmox 6 ISCSI
+item proxmox_live ${space} Proxmox Live
 item option_two ${space} FreeNAS
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
@@ -30,9 +30,23 @@ kernel https://boot.netboot.xyz/memdisk iso raw
 initrd http://download.freenas.org/11.3/STABLE/U4.1/x64/FreeNAS-11.3-U4.1.iso
 boot || goto custom_exit
 
-:option_three
-echo Chains into another menu...
-chain https://raw.githubusercontent.com/${github_user}/netboot.xyz-custom/master/custom1.ipxe || goto custom
+:proxmox_live
+set serverip https://cdn.xoho.team //Modify this to match the ip adress or domain of your webserver
+set pveversion 6.4 //Modify this to match the version you want to install
+set opts "vga=791 video=vesafb:ywrap,mtrr ramdisk_size=16777216 rw quiet initrd=initrd.iso.img"
+menu Please choose an operating system to boot
+    item normal Install Proxmox
+    item debug Install Proxmox (Debug Mode)
+choose --default normal --timeout 5000 target && goto ${target}
+:debug
+    set kernel "${webserver}/pve/pxeboot/linux26 ${opts} splash=verbose proxdebug"
+    goto init
+:normal
+    set kernel "${webserver}/pve/pxeboot/linux26 ${opts} splash=silent"
+    goto init
+:init
+initrd "${webserver}/pve/pxeboot/initrd.iso.img
+boot || goto custom_exit
 
 :custom_exit
 chain utils.ipxe
