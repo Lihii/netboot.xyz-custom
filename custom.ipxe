@@ -18,7 +18,7 @@ goto custom_exit
 
 :option_one
 # Location of Kernel/Initrd images
-kernel https://github.com/rancher/k3os/releases/download/v0.21.5-k3s2r1/k3os-vmlinuz-arm64
+kernel https://github.com/rancher/k3os/releases/download/v0.21.5-k3s2r1/k3os-vmlinuz-arm64 k3os.state.dev=none k3os.state.autoformat=[/dev/sda]
 initrd https://github.com/rancher/k3os/releases/download/v0.21.5-k3s2r1/k3os-initrd-arm64
 boot || goto custom_exit
 
