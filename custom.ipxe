@@ -7,8 +7,7 @@
 clear custom_choice
 menu custom_choice
 item --gap Proxmox 6
-item proxmox_live ${space} Proxmox Live
-item option_two ${space} FreeNAS
+item option_one ${space} k3os
 item --gap This is a second sub menu
 item option_three ${space} Loads another custom sub menu
 item option_four ${space} This is option four
@@ -19,21 +18,8 @@ goto custom_exit
 
 :option_one
 # Location of Kernel/Initrd images
-set base-url http://releases.rancher.com/os/latest
-
-kernel ${base-url}/vmlinuz rancher.state.dev=none rancher.state.autoformat=[/dev/sda] rancher.cloud_init.datasources=[url:http://192.168.90.103:8080/cloud-config]
-initrd ${base-url}/initrd
-boot || goto custom_exit
-
-:option_two
-kernel https://boot.netboot.xyz/memdisk iso raw
-initrd http://download.freenas.org/11.3/STABLE/U4.1/x64/FreeNAS-11.3-U4.1.iso
-boot || goto custom_exit
-
-:proxmox_live
-set opts "vga=791 video=vesafb:ywrap,mtrr ramdisk_size=16777216 rw quiet initrd=initrd.iso.img"
-kernel "https://cdn.xoho.team/pve/pxeboot/linux26 ${opts} splash=verbose proxdebug"
-initrd "https://cdn.xoho.team/pve/pxeboot/initrd.iso.img
+kernel "https://github.com/rancher/k3os/releases/download/v0.21.5-k3s2r1/k3os-vmlinuz-arm64"
+initrd "https://github.com/rancher/k3os/releases/download/v0.21.5-k3s2r1/k3os-initrd-arm64"
 boot || goto custom_exit
 
 :custom_exit
